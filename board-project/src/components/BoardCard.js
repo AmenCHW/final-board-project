@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 
@@ -44,7 +43,7 @@ function BoardCard(props) {
         <BoardAssignie assignie = {props.assignie}/>
         <BoardAddedDate date = {props.date}/>
         </div>
-       
+
     </div>
   )
 }
