@@ -5,7 +5,7 @@ function BoardTitle(props){
     if (props.title === '' || props.title === undefined) {
       return null
     }else {
-      return  <p className="font-bold bg-red-500 pb-2">{props.title}</p>
+      return  <p className="font-bold bg-red-500 pb-2 p-2">{props.title}</p>
     }
   } 
 
@@ -13,7 +13,7 @@ function BoardTitle(props){
     if (props.field === '' || props.field === undefined) {
       return null
     }else {
-      return  <p className="bg-blue-500">{props.field}</p>
+      return  <p className="bg-blue-500 p-2">{props.field}</p>
     }
   } 
 
@@ -21,7 +21,7 @@ function BoardTitle(props){
     if (props.assignie === '' || props.assignie === undefined) {
       return null
     }else {
-      return  <p className="bg-gray-800 font-light">{props.assignie}</p>
+      return  <p className="bg-gray-800 font-light p-2">{props.assignie}</p>
     }
   } 
 
@@ -29,19 +29,19 @@ function BoardTitle(props){
     if (props.date === '' || props.date === undefined) {
       return null
     }else {
-      return  <p className="bg-gray-600 font-extralight">{props.date}</p>
+      return  <p className="bg-gray-600 font-extralight p-2">{props.date}</p>
     }
   } 
 
 
-function BoardCard() {
+function BoardCard(props) {
   return (
-    <div className="bg-cyan-500 w-1/4 rounded-2xl">
-        <BoardTitle title = "Pizza"/>
-        <BoardField field = "A pizza a day, keeps sadness away"/>
+    <div className="bg-cyan-500 rounded-2xl m-10">
+        <BoardTitle title = {props.title}/>
+        <BoardField field = {props.field}/>
         <div className="flex ">
-        <BoardAssignie assignie = "'Amin'"/>
-        <BoardAddedDate date = "7/12/2022"/>
+        <BoardAssignie assignie = {props.assignie}/>
+        <BoardAddedDate date = {props.date}/>
         </div>
 
     </div>
