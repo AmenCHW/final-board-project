@@ -6,9 +6,9 @@ import {
   collection,
   getDocs,
   addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
+//   updateDoc,
+//   deleteDoc,
+//   doc,
 } from "firebase/firestore";
 
 function DataToCard() {
