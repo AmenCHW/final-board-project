@@ -6,6 +6,7 @@ import MainTable from "./pages/mainTable/MainTable";
 import BoardCard from './components/BoardCard';
 import Sidebar from './components/Sidebar';
 
+console.log('Something!');
 
 function App() {
   return (
