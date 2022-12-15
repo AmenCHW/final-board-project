@@ -7,8 +7,8 @@ import {
   getDocs,
   addDoc,
 //   updateDoc,
-//   deleteDoc,
-//   doc,
+deleteDoc,
+doc,
 } from "firebase/firestore";
 
 import { ReactComponent as ViewBoardIcon } from "../assets/icons/view-board.svg"
@@ -29,6 +29,11 @@ function DataCard() {
     await addDoc(boardsCollectionRef, {title: newTitle, date: newDate, text: newText, supervisor: newSupervisor})
   }
 
+  const deleteBoard = async (id) => {
+    const boardDoc = doc(db, "boards", id)
+    await deleteDoc(boardDoc) 
+  }
+
 
   useEffect(()=> {
 
@@ -39,7 +44,7 @@ function DataCard() {
 
     }
     getBoards()
-  },)
+  }, [boardsCollectionRef])
 
   return <div className="w-100 h-100 mx-12">
     <div className="switch-view-container flex justify-end items-center h-10 ">
@@ -58,6 +63,7 @@ function DataCard() {
     {boards.map((board)=> {
         return <div className="mt-2">
             <BoardCard title={board.title} text={board.text} supervisor={board.supervisor} date={board.date}/>
+            <button onClick={() => {deleteBoard(board.id)}}>Delete</button>
             </div>
     })}
     </div>}
