@@ -21,7 +21,7 @@ function BoardTitle(props){
     if (props.supervisor === '' || props.supervisor === undefined) {
       return null
     }else {
-      return  <p className="bg-gray-800 font-light">{props.supervisor}</p>
+      return  <p className="flex items-center h-6 px-3 text-xs font-semibold text-pink-500 bg-pink-100 rounded-full">{props.supervisor}</p>
     }
   } 
 
