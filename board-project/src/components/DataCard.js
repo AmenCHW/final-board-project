@@ -31,7 +31,7 @@ function DataCard() {
   const createBoard = async () => {
     await addDoc(boardsCollectionRef, {
       title: newTitle,
-      date: newDate,
+      date: newDate.toString(),
       text: newText,
       supervisor: newSupervisor,
     });
@@ -46,7 +46,6 @@ function DataCard() {
     const getBoards = async () => {
       const data = await getDocs(boardsCollectionRef);
       setBoards(data.docs.map((board) => ({ ...board.data(), id: board.id })));
-      console.log(data.docs);
     };
     getBoards();
   }, [boardsCollectionRef]);
@@ -125,7 +124,8 @@ function DataCard() {
                   title={board.title}
                   text={board.text}
                   supervisor={board.supervisor}
-                  date={board.date}
+                  date={board.date.slice(0, 15)}
+                  key={board.id}
                 />
                 <button
                   onClick={() => {
