@@ -5,6 +5,7 @@ import Kanban from "./pages/kanban/Kanban";
 import MainTable from "./pages/mainTable/MainTable";
 import DataCard from "./components/DataCard"
 import Sidebar from './components/Sidebar';
+import Overview from "./components/Overview"
 
 
 
@@ -23,7 +24,7 @@ function App() {
         <Route path="/kanban" element={<Kanban/> } />
 
         <Route path="/add" element={ <DataCard/>} />
-        <Route path="/overview" element={<div>Overview</div>} />
+        <Route path="/overview" element={<Overview />} />
         <Route path="/about" element={<div>About</div>} />
       </Routes>
       </main>

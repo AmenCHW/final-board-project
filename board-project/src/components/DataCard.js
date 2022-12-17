@@ -9,6 +9,7 @@ import {
   //   updateDoc,
   deleteDoc,
   doc,
+  onSnapshot
 } from "firebase/firestore";
 
 import { ReactComponent as ViewBoardIcon } from "../assets/icons/view-board.svg";
@@ -19,6 +20,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function DataCard() {
   const [newTitle, setNewTitle] = useState("");
+  const [newStat, setNewStat] = useState("");
   const [newDate, setNewDate] = useState(null);
   const [newText, setNewText] = useState("");
   const [newSupervisor, setNewSupervisor] = useState("");
@@ -34,6 +36,7 @@ function DataCard() {
       date: newDate.toString(),
       text: newText,
       supervisor: newSupervisor,
+      stat: newStat,
     });
   };
 
@@ -43,11 +46,29 @@ function DataCard() {
   };
 
   useEffect(() => {
+    onSnapshot(collection(db, "boards"), (snapshot) => {
+      snapshot.docChanges().forEach((docChange) => {
+        if (docChange.type === "added") {
+          setBoards((prevBoards) => [
+            ...prevBoards,
+            docChange.doc.data(),
+          ]);
+        } else if (docChange.type === "removed") {
+          setBoards(
+            boards.filter((movie) => movie.id !== docChange.doc.id)
+          );
+        }
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     const getBoards = async () => {
       const data = await getDocs(boardsCollectionRef);
       setBoards(data.docs.map((board) => ({ ...board.data(), id: board.id })));
     };
-    getBoards();
+    return getBoards;
+    
   }, [boardsCollectionRef]);
 
   return (
@@ -110,6 +131,23 @@ function DataCard() {
               setNewSupervisor(event.target.value);
             }}
           />
+          {/* <input
+            className="m-2 p-2 bg-gray-600"
+            placeholder="Status..."
+            onChange={(event) => {
+              setNewStat(event.target.value);
+            }}
+          /> */}
+
+          <select className="m-2 p-2 bg-gray-600" onChange={(event) => {
+              setNewStat(event.target.value);
+            }}>
+            <option>Status</option>
+            <option>Requested</option>
+            <option>In Progress</option>
+            <option>In Review</option>
+            <option>Huurraayyy</option>
+          </select>
           <button className="bg-cyan-200 p-2" onClick={createBoard}>
             Add New
           </button>
@@ -117,6 +155,7 @@ function DataCard() {
       )}
       {view === "list" && (
         <div>
+          <h1 className="ml-2 font-extrabold text-2xl">Latest:</h1>
           {boards.map((board) => {
             return (
               <div className="mt-2">
@@ -125,9 +164,10 @@ function DataCard() {
                   text={board.text}
                   supervisor={board.supervisor}
                   date={board.date.slice(0, 15)}
+                  stat={board.stat}
                   key={board.id}
                 />
-                <button
+                <button className="ml-3"
                   onClick={() => {
                     deleteBoard(board.id);
                   }}
