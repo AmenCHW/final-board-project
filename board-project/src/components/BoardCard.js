@@ -4,7 +4,7 @@ function BoardTitle(props) {
   if (props.title === "" || props.title === undefined) {
     return null;
   } else {
-    return <p className="font-bold bg-red-500 pb-2">{props.title}</p>;
+    return <p className="font-bold w-3/4 p-1 ml-4 mr-4 rounded-2xl text-lg">{props.title}</p>;
   }
 }
 
@@ -12,7 +12,7 @@ function BoardText(props) {
   if (props.text === "" || props.text === undefined) {
     return null;
   } else {
-    return <p className="bg-blue-500">{props.text}</p>;
+    return <p className=" text-center m-2 p-4  rounded-sm">{props.text}</p>;
   }
 }
 
@@ -21,8 +21,8 @@ function BoardSupervisor(props) {
     return null;
   } else {
     return (
-      <p className="flex items-center h-6 px-3 text-xs font-semibold text-pink-500 bg-pink-100 rounded-full">
-        {props.supervisor}
+      <p className="flex items-center h-6 px-2 text-xs font-semibold text-pink-500 bg-pink-100 rounded-full">
+        assigned to: {props.supervisor}
       </p>
     );
   }
@@ -32,19 +32,30 @@ function BoardDate(props) {
   if (props.date === "" || props.date === undefined) {
     return null;
   } else {
-    return <p className="bg-gray-600 font-extralight">{props.date}</p>;
+    return <p className=" font-extralight text-sm m-2">Date: {props.date}</p>;
+  }
+}
+function BoardStat(props) {
+  if (props.stat === "" || props.stat === undefined) {
+    return null;
+  } else {
+    return <p className="   ml-4  mt-3 rounded-2xl text-sm ">{props.stat}</p>;
   }
 }
 
 function BoardCard(props) {
   return (
-    <div className="bg-cyan-500 w-1/4 rounded-2xl">
+    <div className="bg-slate-100  rounded-2xl p-3 mt-5">
+     
+      
+      <div className="flex space-between">
       <BoardTitle title={props.title} />
-      <BoardText text={props.text} />
-      <div className="flex ">
-        <BoardSupervisor supervisor={props.supervisor} />
-        <BoardDate date={props.date} />
+      <BoardStat stat={props.stat} />
       </div>
+      <BoardText text={props.text} />
+      <BoardSupervisor supervisor={props.supervisor} />
+        <BoardDate date={props.date} />
+      
     </div>
   );
 }

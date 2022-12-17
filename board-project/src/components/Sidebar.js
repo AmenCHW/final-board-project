@@ -5,10 +5,10 @@ function Sidebar() {
   return (
     <div className="sidebar w-56 bg-gray-100">
       <aside className="grid justify-center">
-        <div className=" text-3xl p-5 font-bold">Work Space</div>
+        <div className=" text-3xl p-5 font-bold ">Work Space</div>
         <div className="w-10 m-3">
           <div className="m-3 text-xl font-semibold flex space-x-4">
-            <i className="fa-solid fa-house"></i> <Link to="/">Home</Link>
+            <i className="fa-solid fa-house "></i> <Link to="/">Home</Link>
           </div>
           <div className="m-3 text-xl font-semibold flex space-x-4">
             <i className="fa-solid fa-plus"></i>{" "}
@@ -17,7 +17,7 @@ function Sidebar() {
             </Link>
           </div>
           <div className="m-3 text-xl font-semibold flex space-x-4">
-            <i className="fa-solid fa-eye"></i> <Link to="/overview">Overview</Link>
+            <i className="fa-solid fa-eye"></i> <Link to="/overview" >Overview</Link>
           </div>
           <div className="m-3 text-xl font-semibold flex space-x-4">
             <i className="fa-solid fa-circle-info"></i>
